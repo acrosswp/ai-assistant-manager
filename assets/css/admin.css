@@ -1,0 +1,34 @@
+/* AI Assistant Manager - admin styles */
+
+.aam-models-table {
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 800px;
+	margin-top: 16px;
+}
+
+.aam-models-table th,
+.aam-models-table td {
+	padding: 10px 14px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	vertical-align: middle;
+}
+
+.aam-models-table thead th {
+	background: #f6f7f7;
+	font-weight: 600;
+	font-size: 13px;
+}
+
+.aam-models-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.aam-models-table tbody tr:hover {
+	background: #f9f9f9;
+}
+
+.aam-model-select {
+	min-width: 260px;
+}
