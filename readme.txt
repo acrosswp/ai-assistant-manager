@@ -1,6 +1,6 @@
 === AI Assistant Manager ===
 Contributors:      okpoojagupta
-Tags:              ai, artificial intelligence, model, openai, anthropic, google
+Tags:              ai, model, openai, anthropic, google
 Requires at least: 7.0
 Tested up to:      7.0
 Requires PHP:      7.4
@@ -31,7 +31,7 @@ Features:
 
 == Installation ==
 
-1. Upload the disable-ai-toolkit folder to /wp-content/plugins/.
+1. Upload the ai-assistant-manager folder to /wp-content/plugins/.
 2. Activate the plugin through the Plugins menu in WordPress.
 3. Go to Settings > Connectors and enter an API key for your preferred AI provider.
 4. Go to Settings > AI Assistant Manager and select a model for each capability.
