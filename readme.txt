@@ -12,49 +12,70 @@ Configure preferred AI models per capability type and override WordPress default
 
 == Description ==
 
-AI Assistant Manager lets site administrators choose which AI model WordPress uses for each capability type - text generation, image generation, and vision/multimodal tasks.
+AI Assistant Manager lets you choose exactly which AI model WordPress uses for
+each capability type — text generation, image generation, and vision/multimodal
+tasks — without touching code.
 
-Once a provider is connected via the WordPress Connectors screen (Settings > Connectors), you can pin a specific model for each capability. The plugin hooks into the WordPress AI model selection system and places your preferred model first in the candidate list, so WordPress always tries it before falling back to its defaults.
+It hooks into the WordPress AI model selection filters at priority 1000 and
+prepends your chosen model to the candidate list, so WordPress always tries it
+first before falling back to its built-in defaults.
 
 Features:
 
-* Set a preferred model for text generation, image generation, and vision/multimodal tasks independently.
-* Preference is only applied when the selected provider has a valid API key entered on the Connectors screen.
-* Falls back gracefully to WordPress defaults if a provider is not connected.
-* Lightweight - no external dependencies, no JavaScript.
-
-Requirements: This plugin requires WordPress 7.0 or later and at least one AI provider plugin installed and configured.
+* Choose a preferred model for text generation, image generation, and
+  vision/multimodal tasks independently from Settings > AI Assistant Manager.
+* Preference is only applied when the selected provider has a valid API key
+  entered on the Connectors screen (Settings > Connectors).
+* Falls back gracefully to WordPress defaults if the provider is not connected.
+* Lightweight — no external dependencies, no JavaScript.
 
 == Installation ==
 
-1. Upload the ai-assistant-manager folder to your /wp-content/plugins/ directory.
-2. Activate the plugin through the Plugins screen in WordPress.
-3. Navigate to Settings > Connectors and enter an API key for your preferred AI provider.
-4. Navigate to Settings > AI Assistant Manager and select a preferred model for each capability type.
+1. Upload the disable-ai-toolkit folder to /wp-content/plugins/.
+2. Activate the plugin through the Plugins menu in WordPress.
+3. Go to Settings > Connectors and enter an API key for your preferred AI provider.
+4. Go to Settings > AI Assistant Manager and select a model for each capability.
 5. Click Save Changes.
 
 == Frequently Asked Questions ==
 
-= Does this plugin work without an AI provider plugin? =
-
-No. You need at least one AI provider plugin installed and configured with a valid API key.
-
-= What happens if I select a model but the API key is removed? =
-
-The preference is ignored and WordPress falls back to its normal model selection.
-
 = Which WordPress version is required? =
 
-WordPress 7.0 or later, because this plugin relies on wp_get_connectors() introduced in 7.0.
+WordPress 7.0 or later, because this plugin relies on wp_get_connectors() and
+the wpai_preferred_*_models filters introduced in WordPress 7.0.
 
-== Screenshots ==
+= Does this plugin work without an AI provider plugin? =
 
-1. The AI Assistant Manager settings page.
+No. You need at least one AI provider plugin installed and configured with a
+valid API key via Settings > Connectors (e.g. the official OpenAI, Anthropic,
+or Google provider plugins).
+
+= What happens if I pick a model but then remove the API key? =
+
+The plugin checks whether the provider has a connected API key at runtime.
+If the key is missing, the saved preference is ignored and WordPress falls
+back to its normal model selection order.
+
+= Can I override the connector check for local/custom providers? =
+
+Yes. The plugin fires the aam_has_ai_credentials filter, matching the same
+pattern as the core wpai_has_ai_credentials filter. Hook into it to declare
+a provider as connected even when it does not use an API key (e.g. Ollama).
+
+= Will this affect every AI feature on my site? =
+
+It overrides the candidate model list for text generation, image generation,
+and vision tasks — any WordPress feature that uses the standard
+wpai_preferred_*_models filters will respect your preference.
 
 == Changelog ==
 
 = 1.0.0 =
 * Initial release.
+* Settings page under Settings > AI Assistant Manager.
+* Preferred model selection for text generation, image generation, and vision.
+* Connector check: preference is only applied when the provider has an API key.
+* aam_has_ai_credentials filter for local/custom provider overrides.
 
 == Upgrade Notice ==
 
