@@ -42,5 +42,22 @@ class AAM_Plugin {
 	private function __construct() {
 		new AAM_Settings_Page();
 		new AAM_Model_Preferences();
+		add_filter( 'plugin_action_links_' . plugin_basename( AAM_PLUGIN_FILE ), array( $this, 'add_settings_link' ) );
+	}
+
+	/**
+	 * Adds a Settings link to the plugin action links on the Plugins page.
+	 *
+	 * @param string[] $links Existing action links.
+	 * @return string[] Modified action links.
+	 */
+	public function add_settings_link( array $links ): array {
+		$settings_link = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( admin_url( 'options-general.php?page=ai-assistant-manager' ) ),
+			esc_html__( 'Settings', 'ai-assistant-manager' )
+		);
+		array_unshift( $links, $settings_link );
+		return $links;
 	}
 }
