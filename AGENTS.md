@@ -48,40 +48,40 @@ ai-assistant-manager/
 
 | Constant | Value |
 |---|---|
-| `AAM_VERSION` | `'1.0.0'` |
-| `AAM_PLUGIN_FILE` | Absolute path to `ai-assistant-manager.php` |
-| `AAM_PLUGIN_DIR` | Absolute path to plugin root directory (trailing slash) |
-| `AAM_PLUGIN_URL` | URL to plugin root directory (trailing slash) |
+| `AIAM_VERSION` | `'1.0.0'` |
+| `AIAM_PLUGIN_FILE` | Absolute path to `ai-assistant-manager.php` |
+| `AIAM_PLUGIN_DIR` | Absolute path to plugin root directory (trailing slash) |
+| `AIAM_PLUGIN_URL` | URL to plugin root directory (trailing slash) |
 
 ---
 
 ## Classes
 
-### `AAM_Plugin` — `includes/class-plugin.php`
+### `AIAM_Plugin` — `includes/class-plugin.php`
 
-Singleton bootstrap. Initialized on the `plugins_loaded` action via `aam_plugin()`.
+Singleton bootstrap. Initialized on the `plugins_loaded` action via `aiam_plugin()`.
 
 **Hooks registered:**
-- Instantiates `AAM_Settings_Page` and `AAM_Model_Preferences`
+- Instantiates `AIAM_Settings_Page` and `AIAM_Model_Preferences`
 - `plugin_action_links_{basename}` → `add_settings_link()` — adds a **Settings** link on the WP Plugins page pointing to `options-general.php?page=ai-assistant-manager`
 
 **Key methods:**
-- `AAM_Plugin::get_instance(): AAM_Plugin` — returns the singleton
+- `AIAM_Plugin::get_instance(): AIAM_Plugin` — returns the singleton
 - `add_settings_link( array $links ): array` — public; prepends the Settings action link
 
 ---
 
-### `AAM_Settings_Page` — `includes/class-settings-page.php`
+### `AIAM_Settings_Page` — `includes/class-settings-page.php`
 
 Renders the admin settings page and handles data persistence.
 
 **Constants:**
-- `AAM_Settings_Page::OPTION_KEY = 'aam_model_preferences'` — the `wp_options` key where preferences are stored
-- `AAM_Settings_Page::PAGE_SLUG = 'ai-assistant-manager'` — the `menu_slug` for `add_options_page()`
+- `AIAM_Settings_Page::OPTION_KEY = 'aiam_model_preferences'` — the `wp_options` key where preferences are stored
+- `AIAM_Settings_Page::PAGE_SLUG = 'ai-assistant-manager'` — the `menu_slug` for `add_options_page()`
 
 **Hooks registered:**
 - `admin_menu` → `add_menu()` — adds sub-page under Settings
-- `admin_init` → `register_settings()` — registers `aam_settings_group` / `aam_model_preferences`
+- `admin_init` → `register_settings()` — registers `aiam_settings_group` / `aiam_model_preferences`
 - `admin_enqueue_scripts` → `enqueue_styles()` — enqueues `assets/css/admin.css` only on hook `settings_page_ai-assistant-manager`
 
 **Capability types (keys used throughout):**
@@ -92,7 +92,7 @@ Renders the admin settings page and handles data persistence.
 | `image_generation` | Image Generation |
 | `vision` | Vision / Multimodal |
 
-**Data format stored in `aam_model_preferences`:**
+**Data format stored in `aiam_model_preferences`:**
 ```php
 [
     'text_generation'  => 'openai::gpt-4o',      // "{provider_id}::{model_id}"
@@ -120,7 +120,7 @@ Applies the saved preferences via WordPress AI filter hooks.
 - `wpai_preferred_vision_models` → `filter_vision_models()`
 
 **Logic in `apply_preference( array $models, string $cap_key ): array`:**
-1. Read `aam_model_preferences` from options
+1. Read `aiam_model_preferences` from options
 2. If no preference set for `$cap_key`, return `$models` unchanged
 3. Parse `$provider . '::' . $model_id` from the stored string
 4. Call `is_provider_connected( $provider )` — if false, return `$models` unchanged
@@ -132,7 +132,7 @@ Applies the saved preferences via WordPress AI filter hooks.
 - Iterates connectors, finds the one matching `$provider_id` with `type === 'ai_provider'`
 - Checks `authentication.method === 'api_key'` and that `get_option( $auth['setting_name'] )` is non-empty
 - Setting name pattern: `connectors_ai_{provider_id}_api_key` (e.g. `connectors_ai_openai_api_key`)
-- Fires `apply_filters( 'aam_has_ai_credentials', $has_credentials, $connectors )` before returning — allows local/custom providers (e.g. Ollama) to declare themselves connected
+- Fires `apply_filters( 'aiam_has_ai_credentials', $has_credentials, $connectors )` before returning — allows local/custom providers (e.g. Ollama) to declare themselves connected
 
 ---
 
@@ -143,7 +143,7 @@ Applies the saved preferences via WordPress AI filter hooks.
 | `wpai_preferred_text_models` | filter | 1000 | Prepends preferred text model |
 | `wpai_preferred_image_models` | filter | 1000 | Prepends preferred image model |
 | `wpai_preferred_vision_models` | filter | 1000 | Prepends preferred vision model |
-| `aam_has_ai_credentials` | filter | — | Override connector check. Args: `(bool $has_credentials, array $connectors)` |
+| `aiam_has_ai_credentials` | filter | — | Override connector check. Args: `(bool $has_credentials, array $connectors)` |
 | `plugin_action_links_{basename}` | filter | — | Adds Settings link on Plugins page |
 | `admin_menu` | action | — | Registers Settings sub-page |
 | `admin_init` | action | — | Registers settings group |
@@ -177,7 +177,7 @@ $connectors['openai'] = [
 
 | Option Key | Type | Notes |
 |---|---|---|
-| `aam_model_preferences` | `array` | Saved by `AAM_Settings_Page`. Deleted on plugin uninstall via `uninstall.php`. |
+| `aiam_model_preferences` | `array` | Saved by `AIAM_Settings_Page`. Deleted on plugin uninstall via `uninstall.php`. |
 
 ---
 
@@ -194,8 +194,8 @@ Generated dynamically via `admin_url()`; never hardcoded.
 ## Assets
 
 **`assets/css/admin.css`:**
-- `.aam-models-table` — styles the settings table
-- `.aam-model-select` — styles the model `<select>` dropdowns
+- `.aiam-models-table` — styles the settings table
+- `.aiam-model-select` — styles the model `<select>` dropdowns
 - Loaded only on hook `settings_page_ai-assistant-manager` (not globally)
 
 ---
