@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Renders the Settings > AI Assistant Manager admin page.
  */
-class AAM_Settings_Page {
+class AIAM_Settings_Page {
 
-	const OPTION_KEY = 'aam_model_preferences';
+	const OPTION_KEY = 'aiam_model_preferences';
 	const PAGE_SLUG  = 'ai-assistant-manager';
 
 	/**
@@ -49,7 +49,7 @@ class AAM_Settings_Page {
 	/** Registers the settings option. */
 	public function register_settings(): void {
 		register_setting(
-			'aam_settings_group',
+			'aiam_settings_group',
 			self::OPTION_KEY,
 			array(
 				'sanitize_callback' => array( $this, 'sanitize_preferences' ),
@@ -96,7 +96,7 @@ class AAM_Settings_Page {
 		if ( 'settings_page_ai-assistant-manager' !== $hook ) {
 			return;
 		}
-		wp_enqueue_style( 'aam-admin', AAM_PLUGIN_URL . 'assets/css/admin.css', array(), AAM_VERSION );
+		wp_enqueue_style( 'aam-admin', AIAM_PLUGIN_URL . 'assets/css/admin.css', array(), AIAM_VERSION );
 	}
 
 	/** Renders the settings page HTML. */

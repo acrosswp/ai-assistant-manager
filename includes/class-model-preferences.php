@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Hooks into WordPress AI filters to override the default model selection.
  */
-class AAM_Model_Preferences {
+class AIAM_Model_Preferences {
 
 	/** Registers all filter hooks. */
 	public function __construct() {
@@ -62,7 +62,7 @@ class AAM_Model_Preferences {
 	 * @return array Updated preferred models list.
 	 */
 	private function apply_preference( array $models, string $cap_key ): array {
-		$preferences = (array) get_option( AAM_Settings_Page::OPTION_KEY, array() );
+		$preferences = (array) get_option( AIAM_Settings_Page::OPTION_KEY, array() );
 
 		if ( empty( $preferences[ $cap_key ] ) ) {
 			return $models;
@@ -130,6 +130,6 @@ class AAM_Model_Preferences {
 			break;
 		}
 
-		return (bool) apply_filters( 'aam_has_ai_credentials', $has_credentials, $connectors );
+		return (bool) apply_filters( 'aiam_has_ai_credentials', $has_credentials, $connectors );
 	}
 }

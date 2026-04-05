@@ -20,20 +20,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AAM_VERSION', '1.0.0' );
-define( 'AAM_PLUGIN_FILE', __FILE__ );
-define( 'AAM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'AAM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'AI_ASSISTANT_MANAGER_VERSION', '1.0.0' );
+define( 'AI_ASSISTANT_MANAGER_PLUGIN_FILE', __FILE__ );
+define( 'AI_ASSISTANT_MANAGER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'AI_ASSISTANT_MANAGER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-require_once AAM_PLUGIN_DIR . 'includes/class-plugin.php';
+define( 'AIAM_VERSION', '1.0.0' );
+define( 'AIAM_PLUGIN_FILE', __FILE__ );
+define( 'AIAM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'AIAM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+require_once AIAM_PLUGIN_DIR . 'includes/class-plugin.php';
 
 /**
  * Initializes the plugin.
  *
- * @return AAM_Plugin
+ * @return AIAM_Plugin
  */
-function aam_plugin(): AAM_Plugin {
-	return AAM_Plugin::get_instance();
+function aiam_plugin(): AIAM_Plugin {
+	return AIAM_Plugin::get_instance();
 }
 
-add_action( 'plugins_loaded', 'aam_plugin' );
+add_action( 'plugins_loaded', 'aiam_plugin' );

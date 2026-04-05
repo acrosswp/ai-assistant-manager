@@ -9,4 +9,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( 'aam_model_preferences' );
+delete_option( 'aiam_model_preferences' );
