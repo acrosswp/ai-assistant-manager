@@ -1,5 +1,5 @@
 <?php
-namespace AI_Model_Preferences\Includes;
+namespace AWPAI_Model_Preferences\Includes;
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
@@ -7,8 +7,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Define the internationalization functionality
  *
- * @package    AI_Model_Preferences
- * @subpackage AI_Model_Preferences/includes
+ * @package    AWPAI_Model_Preferences
+ * @subpackage AWPAI_Model_Preferences/includes
  */
 class I18n {
 
@@ -19,7 +19,7 @@ class I18n {
 		load_plugin_textdomain(
 			'ai-model-preferences',
 			false,
-			plugin_basename( dirname( \AI_MODEL_PREFERENCES_PLUGIN_FILE ) ) . '/languages/'
+			plugin_basename( dirname( \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE ) ) . '/languages/'
 		);
 	}
 }

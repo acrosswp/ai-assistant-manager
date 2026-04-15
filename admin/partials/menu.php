@@ -1,5 +1,5 @@
 <?php
-namespace AI_Model_Preferences\Admin\Partials;
+namespace AWPAI_Model_Preferences\Admin\Partials;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
  * Handles the admin menu and settings page for AI Model Preferences.
  *
  * @since      0.0.1
- * @package    AI_Model_Preferences\Admin\Partials
+ * @package    AWPAI_Model_Preferences\Admin\Partials
  */
 class Menu {
 

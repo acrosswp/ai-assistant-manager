@@ -1,5 +1,5 @@
 <?php
-namespace AI_Model_Preferences\Admin;
+namespace AWPAI_Model_Preferences\Admin;
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
@@ -8,11 +8,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://github.com//AcrossWP/ai-model-preferences
+ * @link       https://github.com/AcrossWP/ai-model-preferences
  * @since      0.0.1
  *
- * @package    AI_Model_Preferences
- * @subpackage AI_Model_Preferences/admin
+ * @package    AWPAI_Model_Preferences
+ * @subpackage AWPAI_Model_Preferences/admin
  */
 
 /**
@@ -21,8 +21,8 @@ defined( 'ABSPATH' ) || exit;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    AI_Model_Preferences
- * @subpackage AI_Model_Preferences/admin
+ * @package    AWPAI_Model_Preferences
+ * @subpackage AWPAI_Model_Preferences/admin
  * @author     WPBoilerplate <contact@wpboilerplate.com>
  */
 class Main {
@@ -75,8 +75,8 @@ class Main {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 
-		$this->js_asset_file  = include \AI_MODEL_PREFERENCES_PLUGIN_PATH . 'build/js/backend.asset.php';
-		$this->css_asset_file = include \AI_MODEL_PREFERENCES_PLUGIN_PATH . 'build/css/backend.asset.php';
+		$this->js_asset_file  = include \AWPAI_MODEL_PREFERENCES_PLUGIN_PATH . 'build/js/backend.asset.php';
+		$this->css_asset_file = include \AWPAI_MODEL_PREFERENCES_PLUGIN_PATH . 'build/css/backend.asset.php';
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Main {
 		if ( 'settings_page_ai-model-preferences' === $hook ) {
 			$css_deps = array_unique( array_merge( $css_deps, array( 'wp-components' ) ) );
 		}
-		wp_enqueue_style( $this->plugin_name, \AI_MODEL_PREFERENCES_PLUGIN_URL . 'build/css/backend.css', $css_deps, $this->css_asset_file['version'], 'all' );
+		wp_enqueue_style( $this->plugin_name, \AWPAI_MODEL_PREFERENCES_PLUGIN_URL . 'build/css/backend.css', $css_deps, $this->css_asset_file['version'], 'all' );
 
 		// Settings-page-specific assets.
 		if ( 'settings_page_ai-model-preferences' !== $hook ) {
@@ -190,7 +190,7 @@ class Main {
 	 */
 	public function enqueue_scripts( string $hook = '' ) {
 
-		wp_enqueue_script( $this->plugin_name, \AI_MODEL_PREFERENCES_PLUGIN_URL . 'build/js/backend.js', $this->js_asset_file['dependencies'], $this->js_asset_file['version'], false );
+		wp_enqueue_script( $this->plugin_name, \AWPAI_MODEL_PREFERENCES_PLUGIN_URL . 'build/js/backend.js', $this->js_asset_file['dependencies'], $this->js_asset_file['version'], false );
 
 		// Inject settings data after the handle is registered (wp_localize_script requires a registered handle).
 		if ( 'settings_page_ai-model-preferences' === $hook ) {
@@ -199,9 +199,9 @@ class Main {
 				'aiamSettings',
 				array(
 					'models'      => $this->get_models_grouped_by_capability(),
-					'preferences' => (object) get_option( \AI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY, array() ),
+					'preferences' => (object) get_option( \AWPAI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY, array() ),
 					'nonce'       => wp_create_nonce( 'wp_rest' ),
-					'optionName'  => \AI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY,
+					'optionName'  => \AWPAI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY,
 				)
 			);
 		}

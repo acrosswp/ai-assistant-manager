@@ -1,12 +1,12 @@
 <?php
 /**
- * Class AI_Model_Preferences\Includes\Autoloader
+ * Class AWPAI_Model_Preferences\Includes\Autoloader
  *
  * @since 0.0.1
- * @package AI_Model_Preferences
+ * @package AWPAI_Model_Preferences
  */
 
-namespace AI_Model_Preferences\Includes;
+namespace AWPAI_Model_Preferences\Includes;
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
@@ -110,12 +110,14 @@ class Autoloader {
 		$normalized_directory     = '.' === $class_directory ? '' : $class_directory . '/';
 		$lowercase_directory      = '.' === $class_directory ? '' : strtolower( $class_directory ) . '/';
 
-		$candidate_paths = array_unique( array(
-			$file_path,
-			$base_directory . $normalized_directory . $lowercase_class_basename . '.php',
-			$base_directory . $lowercase_directory . $class_basename . '.php',
-			$base_directory . $lowercase_directory . $lowercase_class_basename . '.php',
-		) );
+		$candidate_paths = array_unique(
+			array(
+				$file_path,
+				$base_directory . $normalized_directory . $lowercase_class_basename . '.php',
+				$base_directory . $lowercase_directory . $class_basename . '.php',
+				$base_directory . $lowercase_directory . $lowercase_class_basename . '.php',
+			)
+		);
 
 		foreach ( $candidate_paths as $candidate_path ) {
 			if ( file_exists( $candidate_path ) ) {

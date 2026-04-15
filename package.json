@@ -6,12 +6,12 @@
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com//AcrossWP/ai-model-preferences.git"
+		"url": "git+https://github.com/AcrossWP/ai-model-preferences.git"
 	},
 	"author": "WPBoilerplate",
 	"license": "GPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com//AcrossWP/ai-model-preferences/issues"
+		"url": "https://github.com/AcrossWP/ai-model-preferences/issues"
 	},
 	"scripts": {
 		"build": "wp-scripts build",

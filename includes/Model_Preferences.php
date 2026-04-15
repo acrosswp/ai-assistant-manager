@@ -1,5 +1,5 @@
 <?php
-namespace AI_Model_Preferences\Includes;
+namespace AWPAI_Model_Preferences\Includes;
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
  * Hooks into WordPress AI filters to override the default model selection.
  *
  * @since 1.0.0
- * @package AI_Model_Preferences
+ * @package AWPAI_Model_Preferences
  */
 class Model_Preferences {
 
@@ -53,7 +53,7 @@ class Model_Preferences {
 	 * @return array Updated preferred models list.
 	 */
 	private function apply_preference( array $models, string $cap_key ): array {
-		$preferences = (array) get_option( \AI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY, array() );
+		$preferences = (array) get_option( \AWPAI_Model_Preferences\Admin\Partials\Menu::OPTION_KEY, array() );
 
 		if ( empty( $preferences[ $cap_key ] ) ) {
 			return $models;
@@ -100,8 +100,8 @@ class Model_Preferences {
 		}
 
 		try {
-			$registry         = \WordPress\AiClient\AiClient::defaultRegistry();
-			$has_credentials  = $registry->isProviderConfigured( $provider_id );
+			$registry        = \WordPress\AiClient\AiClient::defaultRegistry();
+			$has_credentials = $registry->isProviderConfigured( $provider_id );
 		} catch ( \Throwable $e ) {
 			$has_credentials = false;
 		}

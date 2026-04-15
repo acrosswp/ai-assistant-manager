@@ -17,12 +17,12 @@
  * general skeleton and outline for how the file should work.
  *
  * For more information, see the following discussion:
- * https://github.com//AcrossWP/ai-model-preferences
+ * https://github.com/AcrossWP/ai-model-preferences
  *
- * @link       https://github.com//AcrossWP/ai-model-preferences
+ * @link       https://github.com/AcrossWP/ai-model-preferences
  * @since      0.0.1
  *
- * @package    AI_Model_Preferences
+ * @package    AWPAI_Model_Preferences
  */
 
 // If uninstall not called from WordPress, then exit.

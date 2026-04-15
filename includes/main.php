@@ -1,5 +1,5 @@
 <?php
-namespace AI_Model_Preferences\Includes;
+namespace AWPAI_Model_Preferences\Includes;
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
@@ -10,11 +10,11 @@ defined( 'ABSPATH' ) || exit;
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://github.com//AcrossWP/ai-model-preferences
+ * @link       https://github.com/AcrossWP/ai-model-preferences
  * @since      0.0.1
  *
- * @package    AI_Model_Preferences
- * @subpackage AI_Model_Preferences/includes
+ * @package    AWPAI_Model_Preferences
+ * @subpackage AWPAI_Model_Preferences/includes
  */
 
 /**
@@ -27,8 +27,8 @@ defined( 'ABSPATH' ) || exit;
  * version of the plugin.
  *
  * @since      0.0.1
- * @package    AI_Model_Preferences
- * @subpackage AI_Model_Preferences/includes
+ * @package    AWPAI_Model_Preferences
+ * @subpackage AWPAI_Model_Preferences/includes
  * @author     WPBoilerplate <contact@wpboilerplate.com>
  */
 final class Main {
@@ -36,7 +36,7 @@ final class Main {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var AI_Model_Preferences
+	 * @var AWPAI_Model_Preferences
 	 * @since 0.0.1
 	 */
 	protected static $_instance = null;
@@ -56,7 +56,7 @@ final class Main {
 	 *
 	 * @since    0.0.1
 	 * @access   protected
-	 * @var      AI_Model_Preferences_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      AWPAI_Model_Preferences_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -109,14 +109,14 @@ final class Main {
 
 		$this->define_constants();
 
-		if ( defined( 'AI_MODEL_PREFERENCES_VERSION' ) ) {
-			$this->version = AI_MODEL_PREFERENCES_VERSION;
+		if ( defined( 'AWPAI_MODEL_PREFERENCES_VERSION' ) ) {
+			$this->version = AWPAI_MODEL_PREFERENCES_VERSION;
 		} else {
 			$this->version = '0.0.1';
 		}
 
 		// Load the autoloader class manually before registering it
-		$plugin_path = AI_MODEL_PREFERENCES_PLUGIN_PATH;
+		$plugin_path = AWPAI_MODEL_PREFERENCES_PLUGIN_PATH;
 
 		require_once $plugin_path . 'includes/Autoloader.php';
 
@@ -130,14 +130,14 @@ final class Main {
 	}
 
 	/**
-	 * Main AI_Model_Preferences Instance.
+	 * Main AWPAI_Model_Preferences Instance.
 	 *
 	 * Ensures only one instance of WooCommerce is loaded or can be loaded.
 	 *
 	 * @since 0.0.1
 	 * @static
-	 * @see AI_Model_Preferences()
-	 * @return AI_Model_Preferences - Main instance.
+	 * @see AWPAI_Model_Preferences()
+	 * @return AWPAI_Model_Preferences - Main instance.
 	 */
 	public static function instance() {
 		if ( null === self::$_instance ) {
@@ -151,25 +151,23 @@ final class Main {
 	 */
 	private function define_constants() {
 
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_BASENAME', plugin_basename( \AI_MODEL_PREFERENCES_PLUGIN_FILE ) );
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_PATH', plugin_dir_path( \AI_MODEL_PREFERENCES_PLUGIN_FILE ) );
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_URL', plugin_dir_url( \AI_MODEL_PREFERENCES_PLUGIN_FILE ) );
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_NAME_SLUG', $this->plugin_name );
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_NAME', 'AI Model Preferences' );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_PLUGIN_BASENAME', plugin_basename( \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE ) );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_PLUGIN_PATH', plugin_dir_path( \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE ) );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_PLUGIN_URL', plugin_dir_url( \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE ) );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_PLUGIN_NAME_SLUG', $this->plugin_name );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_PLUGIN_NAME', 'AI Model Preferences' );
 
 		if ( ! function_exists( 'get_plugin_data' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		$plugin_file = defined( 'AI_MODEL_PREFERENCES_PLUGIN_FILE' )
-			? \AI_MODEL_PREFERENCES_PLUGIN_FILE
-			: \AI_MODEL_PREFERENCES_PLUGIN_FILE;
+		$plugin_file = defined( 'AWPAI_MODEL_PREFERENCES_PLUGIN_FILE' )
+			? \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE
+			: \AWPAI_MODEL_PREFERENCES_PLUGIN_FILE;
 		$plugin_data = get_plugin_data( $plugin_file );
 		$version     = $plugin_data['Version'];
-		$this->define( 'AI_MODEL_PREFERENCES_VERSION', $version );
+		$this->define( 'AWPAI_MODEL_PREFERENCES_VERSION', $version );
 
-		$this->define( 'AI_MODEL_PREFERENCES_PLUGIN_URL', $version );
-
-		$this->plugin_dir = AI_MODEL_PREFERENCES_PLUGIN_PATH;
+		$this->plugin_dir = AWPAI_MODEL_PREFERENCES_PLUGIN_PATH;
 	}
 
 	/**
@@ -194,10 +192,10 @@ final class Main {
 	 */
 	private function register_autoloader() {
 		// Get the plugin path
-		$plugin_path = AI_MODEL_PREFERENCES_PLUGIN_PATH;
+		$plugin_path = AWPAI_MODEL_PREFERENCES_PLUGIN_PATH;
 
 		// Create autoloader instance
-		$this->autoloader = new Autoloader( 'AI_Model_Preferences', $plugin_path );
+		$this->autoloader = new Autoloader( 'AWPAI_Model_Preferences', $plugin_path );
 
 		// Register the autoloader
 		spl_autoload_register( array( $this->autoloader, 'autoload' ) );
@@ -235,7 +233,7 @@ final class Main {
 		/**
 		 * Add composer file
 		 */
-		$plugin_path = AI_MODEL_PREFERENCES_PLUGIN_PATH;
+		$plugin_path = AWPAI_MODEL_PREFERENCES_PLUGIN_PATH;
 
 		if ( file_exists( $plugin_path . 'vendor/autoload.php' ) ) {
 			require_once $plugin_path . 'vendor/autoload.php';
@@ -254,10 +252,10 @@ final class Main {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - AI_Model_Preferences\Admin\Loader. Orchestrates the hooks of the plugin.
-	 * - AI_Model_Preferences\Admin\I18n. Defines internationalization functionality.
-	 * - AI_Model_Preferences\Admin\Main. Defines all hooks for the admin area.
-	 * - AI_Model_Preferences_Public. Defines all hooks for the public side of the site.
+	 * - AWPAI_Model_Preferences\Admin\Loader. Orchestrates the hooks of the plugin.
+	 * - AWPAI_Model_Preferences\Admin\I18n. Defines internationalization functionality.
+	 * - AWPAI_Model_Preferences\Admin\Main. Defines all hooks for the admin area.
+	 * - AWPAI_Model_Preferences_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -281,7 +279,7 @@ final class Main {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new \AI_Model_Preferences\Admin\Main( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new \AWPAI_Model_Preferences\Admin\Main( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 
@@ -290,11 +288,11 @@ final class Main {
 		/**
 		 * Settings page and plugin action links
 		 */
-		$menu = new \AI_Model_Preferences\Admin\Partials\Menu( $this->get_plugin_name(), $this->get_version() );
+		$menu = new \AWPAI_Model_Preferences\Admin\Partials\Menu( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_menu', $menu, 'add_menu' );
 		$this->loader->add_action( 'init', $menu, 'register_settings' );
 		$this->loader->add_filter(
-			'plugin_action_links_' . AI_MODEL_PREFERENCES_PLUGIN_BASENAME,
+			'plugin_action_links_' . AWPAI_MODEL_PREFERENCES_PLUGIN_BASENAME,
 			$plugin_admin,
 			'add_settings_link'
 		);
@@ -312,7 +310,7 @@ final class Main {
 	private function define_plugin_hooks() {
 
 		$model_prefs = new Model_Preferences();
-		add_filter( 'wpai_preferred_text_models',  array( $model_prefs, 'filter_text_models' ),  1111 );
+		add_filter( 'wpai_preferred_text_models', array( $model_prefs, 'filter_text_models' ), 1111 );
 		add_filter( 'wpai_preferred_image_models', array( $model_prefs, 'filter_image_models' ), 1111 );
 		add_filter( 'wpai_preferred_vision_models', array( $model_prefs, 'filter_vision_models' ), 1111 );
 	}
@@ -341,7 +339,7 @@ final class Main {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     0.0.1
-	 * @return    AI_Model_Preferences_Loader    Orchestrates the hooks of the plugin.
+	 * @return    AWPAI_Model_Preferences_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
