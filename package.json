@@ -1,7 +1,7 @@
 {
 	"name": "abilities-model-selector",
-	"title": "AI Model Preferences",
-	"description": "AI Model Preferences by WPBoilerplate.",
+	"title": "Abilities Model Selector",
+	"description": "Abilities Model Selector by WPBoilerplate.",
 	"homepage": "https://github.com/woocommerce/woocommerce/wiki",
 	"private": true,
 	"repository": {

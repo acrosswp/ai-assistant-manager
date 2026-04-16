@@ -5,7 +5,7 @@ namespace Abilities_Model_Selector\Admin\Partials;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Handles the admin menu and settings page for AI Model Preferences.
+ * Handles the admin menu and settings page for Abilities Model Selector.
  *
  * @since      0.0.1
  * @package    Abilities_Model_Selector\Admin\Partials
@@ -54,8 +54,8 @@ class Menu {
 	/** Adds the Settings sub-menu page. */
 	public function add_menu(): void {
 		add_options_page(
-			__( 'AI Model Preferences', 'abilities-model-selector' ),
-			__( 'AI Model Preferences', 'abilities-model-selector' ),
+			__( 'Model Selector', 'abilities-model-selector' ),
+			__( 'Model Selector', 'abilities-model-selector' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),

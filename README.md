@@ -1,4 +1,4 @@
-# AI Model Preferences
+# Abilities Model Selector
 
 > A WordPress plugin that lets administrators pin a specific AI model for each capability type, overriding the WordPress default model selection.
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-By default, WordPress picks the first available model from your configured AI connectors. **AI Model Preferences** adds a settings page under **Settings > AI Model Preferences** where you can choose a preferred model for each AI capability type. The chosen model is moved to the top of the WordPress candidate list so it is always selected first.
+By default, WordPress picks the first available model from your configured AI connectors. **Abilities Model Selector** adds a settings page under **Settings > Abilities Model Selector** where you can choose a preferred model for each AI capability type. The chosen model is moved to the top of the WordPress candidate list so it is always selected first.
 
 Supported capability types:
 
@@ -47,7 +47,7 @@ Supported capability types:
    npm install && npm run build
    ```
 4. Activate the plugin via the **Plugins** screen in WordPress.
-5. Go to **Settings > AI Model Preferences** and choose your preferred model per capability.
+5. Go to **Settings > Abilities Model Selector** and choose your preferred model per capability.
 
 ---
 
@@ -138,7 +138,7 @@ Yes. Text generation, image generation, and vision are each configured independe
 ### 0.0.1
 
 - Initial release
-- React-powered settings UI under Settings > AI Model Preferences
+- React-powered settings UI under Settings > Abilities Model Selector
 - Per-capability model preference for text generation, image generation, and vision
 - Integrates with WordPress AI plugin preference filter hooks
 - REST API support for save without page reload

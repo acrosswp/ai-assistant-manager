@@ -155,7 +155,7 @@ final class Main {
 		$this->define( 'ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_PATH', plugin_dir_path( \ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_FILE ) );
 		$this->define( 'ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_URL', plugin_dir_url( \ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_FILE ) );
 		$this->define( 'ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_NAME_SLUG', $this->plugin_name );
-		$this->define( 'ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_NAME', 'AI Model Preferences' );
+		$this->define( 'ACWP_ABILITIES_MODEL_SELECTOR_PLUGIN_NAME', 'Abilities Model Selector' );
 
 		if ( ! function_exists( 'get_plugin_data' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';

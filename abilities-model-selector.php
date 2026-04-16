@@ -1,6 +1,6 @@
 <?php
 /**
- * Instantiates the AI Model Preferences plugin
+ * Instantiates the Abilities Model Selector plugin
  *
  * @package Abilities_Model_Selector
  */
@@ -22,7 +22,7 @@ namespace Abilities_Model_Selector;
  * @wordpress-plugin
  * Plugin Name:       Abilities Model Selector
  * Plugin URI:        https://github.com/AcrossWP/abilities-model-selector
- * Description:       A WordPress plugin to manage AI model preferences for users, allowing them to select and save their preferred AI models for various tasks.
+ * Description:       A WordPress plugin to manage Abilities Model Selector for users, allowing them to select and save their preferred AI models for various tasks.
  * Version:           0.0.1
  * Author:            okpoojagupta
  * Author URI:        https://github.com/AcrossWP/
