@@ -5,7 +5,7 @@ Tags: ai, models, manager, preferences, abilities
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.0.3
+Stable tag: 0.0.5
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,9 +76,25 @@ Any provider registered with the [AI plugin](https://wordpress.org/plugins/ai/) 
 
 == Screenshots ==
 
-1. The AcrossAI Model Manager settings page showing dropdowns for each capability type.
+1. The Model Manager settings page showing dropdowns for each capability type.
+2. Settings to control the WP AI client Timeout Request
+3. Screenshots to show all the of WP AI Client
 
 == Changelog ==
+
+= 0.0.5 =
+* Added AI request logging system — every successful AI generation call is now logged to a custom database table (`{prefix}acai_ai_logs`).
+* Logs capture: provider, model, capability, prompt text, response text, token usage (prompt/completion/total/thought), duration (ms), finish reason, and the WordPress user who triggered the request.
+* Added **source/caller tracking** — each log entry records where the AI request originated: plugin slug, theme slug, mu-plugin filename, or WordPress core, along with the relative file path and line number.
+* Added **Settings > AI Logs** admin page with a sortable, paginated log table (date, capability, provider, model, source, tokens, duration). Includes bulk delete and a detail view showing full prompt and response text.
+* Added **Log Retention** setting (days) to the Request Settings card — logs older than the configured number of days are automatically deleted daily via WP-Cron. Default: 30 days.
+* Log table is created on plugin activation via `dbDelta()` and dropped cleanly on plugin uninstall.
+* Reduced AGENTS.md size by 40% — split into focused reference docs under `docs/` (hooks, classes, JS frontend, decisions).
+
+= 0.0.4 =
+* Add Feature to track WP AI Client
+* Add Screenshots
+* Add Video
 
 = 0.0.3 =
 * Added compatibility badges to settings card headers indicating which AI integration each section supports (WP AI Client, AI Plugin, coming soon).
@@ -99,6 +115,9 @@ Any provider registered with the [AI plugin](https://wordpress.org/plugins/ai/) 
 * REST API support for seamless save without page reload.
 
 == Upgrade Notice ==
+
+= 0.0.5 =
+Creates a new database table (`{prefix}acai_ai_logs`) on activation. Deactivate and reactivate the plugin after updating, or the upgrade will run automatically on your next admin page load.
 
 = 0.0.2 =
 No database changes — update to reflect the correct WordPress 7.0 requirement.

@@ -287,6 +287,15 @@ final class Main {
 			$plugin_admin,
 			'add_settings_link'
 		);
+
+		/**
+		 * AI request logs page
+		 */
+		$log_page = new \AcrossAI_Model_Manager\Admin\Partials\LogPage( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'admin_menu', $log_page, 'add_menu' );
+
+		// Run DB schema upgrades for existing installs.
+		$this->loader->add_action( 'admin_init', 'AcrossAI_Model_Manager\Includes\Activator', 'maybe_upgrade' );
 	}
 
 	/**
@@ -307,6 +316,14 @@ final class Main {
 
 		// Apply the saved HTTP request timeout to every wp_ai_client_prompt() call globally.
 		add_filter( 'wp_ai_client_default_request_timeout', array( 'AcrossAI_Model_Manager\Includes\Request_Settings', 'filter_timeout' ) );
+
+		// Log every AI generation request to the database.
+		$logger = new Logger();
+		add_action( 'wp_ai_client_before_generate_result', array( $logger, 'on_before_generate' ) );
+		add_action( 'wp_ai_client_after_generate_result', array( $logger, 'on_after_generate' ) );
+
+		// Daily cron cleanup of old log entries.
+		add_action( Logger::CRON_HOOK, array( 'AcrossAI_Model_Manager\Includes\Logger', 'cleanup_old_logs' ) );
 	}
 
 	/**

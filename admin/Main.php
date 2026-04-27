@@ -233,7 +233,7 @@ class Main {
 	public function add_settings_link( array $links ): array {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( admin_url( 'options-general.php?page=acrossai-model-manager' ) ),
+			esc_url( admin_url( 'admin.php?page=acrossai-model-manager' ) ),
 			esc_html__( 'Settings', 'acrossai-model-manager' )
 		);
 		array_unshift( $links, $settings_link );

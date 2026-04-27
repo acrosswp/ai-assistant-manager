@@ -29,3 +29,16 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+global $wpdb;
+
+// Drop the AI request logs table.
+$table = $wpdb->prefix . 'acai_ai_logs';
+$wpdb->query( "DROP TABLE IF EXISTS `{$table}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+// Remove plugin options.
+delete_option( 'acai_model_manager_preferences' );
+delete_option( 'acai_model_manager_db_version' );
+
+// Clear the scheduled cron event.
+wp_clear_scheduled_hook( 'acai_model_manager_cleanup_logs' );

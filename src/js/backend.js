@@ -449,6 +449,39 @@ function SettingsApp() {
 								}
 							/>
 						</BaseControl>
+						<BaseControl
+							label={ __(
+								'Log Retention (days)',
+								'acrossai-model-manager'
+							) }
+							help={ __(
+								'Automatically delete AI request log entries older than this many days. Runs daily via WP-Cron. Leave empty to use the default (30 days).',
+								'acrossai-model-manager'
+							) }
+							id="acwpms-param-log_retention_days"
+							__nextHasNoMarginBottom
+						>
+							<input
+								type="number"
+								id="acwpms-param-log_retention_days"
+								className="acwpms-param-input"
+								value={
+									preferences.log_retention_days !== null &&
+									preferences.log_retention_days !== undefined
+										? preferences.log_retention_days
+										: ''
+								}
+								min={ 1 }
+								step={ 1 }
+								placeholder="30"
+								onChange={ ( e ) =>
+									handleParamChange(
+										{ key: 'log_retention_days', type: 'int' },
+										e.target.value
+									)
+								}
+							/>
+						</BaseControl>
 					</VStack>
 				</CardBody>
 			</Card>

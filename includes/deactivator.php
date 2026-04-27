@@ -34,5 +34,6 @@ class Deactivator {
 	 * @since    0.0.1
 	 */
 	public static function deactivate() {
+		wp_clear_scheduled_hook( 'acai_model_manager_cleanup_logs' );
 	}
 }

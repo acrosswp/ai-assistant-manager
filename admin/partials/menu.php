@@ -54,13 +54,14 @@ class Menu {
 
 	/** Adds the Settings sub-menu page. */
 	public function add_menu(): void {
-		add_options_page(
+		add_menu_page(
 			__( 'Model Manager', 'acrossai-model-manager' ),
 			__( 'Model Manager', 'acrossai-model-manager' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
-			2
+			set_url_scheme( 'dashicons-networking' ),
+			100
 		);
 	}
 
@@ -107,7 +108,10 @@ class Menu {
 							'frequency_penalty' => array(
 								'type' => array( 'number', 'null' ),
 							),
-							'request_timeout'   => array(
+							'request_timeout'    => array(
+								'type' => array( 'integer', 'null' ),
+							),
+							'log_retention_days' => array(
 								'type' => array( 'integer', 'null' ),
 							),
 						),
@@ -169,9 +173,10 @@ class Menu {
 
 		// Generation parameters — integer values with minimum validation.
 		$int_params = array(
-			'max_tokens'      => 1,
-			'top_k'           => 1,
-			'request_timeout' => 1,
+			'max_tokens'         => 1,
+			'top_k'              => 1,
+			'request_timeout'    => 1,
+			'log_retention_days' => 1,
 		);
 
 		foreach ( $int_params as $key => $min ) {
