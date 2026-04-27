@@ -4,9 +4,6 @@
 /.gitattributes
 .gitignore
 
-# WordPress.org assets (screenshots, banners — deployed separately by the action)
-/.wordpress-org
-
 # Dev tooling & config
 /.claude
 /.editorconfig
